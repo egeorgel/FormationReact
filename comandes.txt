@@ -1,0 +1,4 @@
+npm init
+npm install --save react react-dom babel webpack path babelify babel-loader babel-core babel-preset-react
+npm install --save react-router
+npm install --save react-bootstrap
