@@ -9,6 +9,10 @@ class Group extends React.Component {
             group: this.props.group,
             groupCount: this.props.groupCount,
             index: this.props.index,
+
+            deletRow: false,
+            editRow: false,
+            editRowNewGroup: ''
         };
     }
 
@@ -48,7 +52,7 @@ class Group extends React.Component {
         if (this.state.groupCount > 1) {
             // create array of index groupCount and iterate throw a map
             return Array.from(new Array(this.state.groupCount), () => '').map((x, index) => (
-                 <MenuItem eventKey={"1."+index} onClick={this._editGroup.bind(this, index + 1, sentence)}>
+                 <MenuItem eventKey={"1."+index} onClick={this._editGroup.bind(this, index + 1, sentence)} key={"MenuItem"+index}>
                     <i className="fa fa-pencil-square-o icon-sentence" aria-hidden="true"/>
                     Group {index + 1}
                 </MenuItem>
@@ -57,10 +61,12 @@ class Group extends React.Component {
     }
 
     _deleteRow(sentence) {
+        this.setState({deletRow: true});
         console.log("group id : " + this.state.group.id + " delete : " + sentence);
     }
 
     _editGroup(group, sentence) {
+        this.setState({editRow: true, editRowNewGroup: group});
         console.log("group : " + group + " edit : " + sentence);
     }
 }
