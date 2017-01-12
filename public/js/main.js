@@ -54138,7 +54138,7 @@ var GroupContaineur = function (_React$Component) {
                         _reactBootstrap.PanelGroup,
                         { defaultActiveKey: '1',
                             activeKey: this.state.activeKey,
-                            onSelect: this._handleSelect.bind(this), accordion: true },
+                            onSelect: this._handleSelect.bind(this) },
                         groupR
                     )
                 )
@@ -54158,7 +54158,7 @@ var GroupContaineur = function (_React$Component) {
                 return this.state.groups.map(function (group, index) {
                     return _react2.default.createElement(
                         _reactBootstrap.Panel,
-                        { header: group.title, eventKey: index + 1, bsStyle: 'primary', key: "panel" + index },
+                        { header: group.title, eventKey: index + 1, bsStyle: 'primary', key: "panel" + index, collapsible: true, defaultExpanded: true },
                         _react2.default.createElement(_Group2.default, { group: group, groupCount: _this2.state.groups.length, index: index + 1, key: "group" + index })
                     );
                 });
