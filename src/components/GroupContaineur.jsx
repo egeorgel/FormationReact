@@ -19,7 +19,7 @@ class GroupContaineur extends React.Component {
                 <Col md={6} mdOffset={3}>
                     <PanelGroup defaultActiveKey={'1'}
                                 activeKey={this.state.activeKey}
-                                onSelect={this._handleSelect.bind(this)} accordion>
+                                onSelect={this._handleSelect.bind(this)}>
                         {groupR}
                     </PanelGroup>
                 </Col>
@@ -34,7 +34,7 @@ class GroupContaineur extends React.Component {
     _renderGroup() {
         if (this.state.groups.length > 0) {
             return this.state.groups.map((group, index) => (
-                <Panel header={group.title} eventKey={index+1} bsStyle="primary" key={"panel"+index}>
+                <Panel header={group.title} eventKey={index+1} bsStyle="primary" key={"panel"+index} collapsible defaultExpanded>
                     <Group group={group} groupCount={this.state.groups.length} index={index+1} key={"group"+index}/>
                 </Panel>
             ));
