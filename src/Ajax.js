@@ -1,9 +1,9 @@
-var $ = require('jquery');
+let $ = require('jquery');
 
 class Ajax {
 
     static Get (urlToGetFrom) {
-        var result= {};
+        let result= {};
         $.ajax({
             url: urlToGetFrom,
             dataType: 'json',
@@ -21,8 +21,7 @@ class Ajax {
     };
 
     static Post (urlToGetFrom, data) {
-
-        var result= {};
+        let result= {};
         $.ajax({
             url: urlToGetFrom,
             contentType :'application/json',
@@ -42,7 +41,7 @@ class Ajax {
     };
 
     static Delete (url) {
-        var result= {};
+        let result= {};
         $.ajax({
             url: url,
             dataType: 'json',

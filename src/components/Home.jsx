@@ -1,42 +1,14 @@
 import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import GroupContaineur from './GroupContaineur.jsx';
+import GroupAction from '../actions/GroupAction';
 
 class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            groups : [
-                {
-                    id : "1",
-                    title : "Group 1",
-                    sentences : [
-                        "phrase 1 1",
-                        "phrase 1 2",
-                        "phrase 1 3",
-                    ]
-                },
-                {
-                    id : "2",
-                    title : "Group 2",
-                    sentences : [
-                        "phrase 2 1",
-                        "phrase 2 2",
-                        "phrase 2 3",
-                    ]
-                },
-                {
-                    id : "3",
-                    title : "Group 3",
-                    sentences : [
-                        "phrase 3 1",
-                        "phrase 3 2",
-                        "phrase 3 3",
-                    ]
-                }
-            ]
-        }
+
+        GroupAction.getAllGroup();
     }
 
     render() {
@@ -47,7 +19,7 @@ class Home extends React.Component {
                         <h1>Tutorial React</h1>
                     </Col>
                 </Row>
-                <GroupContaineur groups={this.state.groups}/>
+                <GroupContaineur />
             </section>
         );
     }

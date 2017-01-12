@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row, Col, PanelGroup, Panel} from 'react-bootstrap';
 import Group from './Group.jsx';
+import GroupStore from '../stores/GroupStore';
 
 class GroupContaineur extends React.Component {
 
@@ -8,8 +9,16 @@ class GroupContaineur extends React.Component {
         super(props);
         this.state = {
             activeKey: '1',
-            groups: this.props.groups
         };
+    }
+
+    componentWillMount() {
+        this._updateGroup();
+        GroupStore.addChangeListener(this._updateGroup.bind(this));
+    }
+
+    componentWillUnmount() {
+        GroupStore.removeChangeListener(this._updateGroup.bind(this));
     }
 
     render() {
@@ -40,6 +49,11 @@ class GroupContaineur extends React.Component {
             ));
         }
         else return ([]);
+    }
+
+    _updateGroup() {
+        let allGroup = GroupStore.getAllGroups();
+        this.setState({groups: allGroup});
     }
 
 }
