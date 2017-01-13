@@ -47,7 +47,6 @@ function helper(sentence) {
     });
     if (index !== null ) {
         groups[indexGroup].sentences.splice(index,1);
-        console.log(indexGroup)
     }
 }
 

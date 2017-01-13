@@ -25,9 +25,8 @@ describe('Home components test', function () {
         expect(wrapper.find('h1').at(0).html()).to.equal("<h1>Tutorial React</h1>");
     });
 
-    it('Should have a GroupContainer with props', () => {
+    it('Should have a GroupContainer', () => {
         const wrapper = mount(<Home/>);
         expect(wrapper.find(GroupContaineur)).to.have.length(1);
-        expect(wrapper.find(GroupContaineur).get(0).props.groups.length).to.equal(3);
     });
 });

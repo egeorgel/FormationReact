@@ -8,10 +8,11 @@ import sinon from 'sinon';
 
 import Group from '../../src/components/Group.jsx';
 import {Row, Col, ListGroup, ListGroupItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import GroupAction from '../../src/actions/GroupAction';
 
 describe('Group components test', function () {
 
-    var group = {
+    let group = {
         id : "1",
         title : "Group 1",
         sentences : [
@@ -19,7 +20,8 @@ describe('Group components test', function () {
             "phrase 1 2",
             "phrase 1 3",
         ]
-    }
+    };
+
     beforeEach(() => {
         // runs before each test in this block
     });
@@ -50,17 +52,22 @@ describe('Group components test', function () {
     });
 
     it('Should react when delete btn is select', () => {
-        const wrapper = shallow(<Group group={group} groupCount={2} index={1}/>);
-        expect(wrapper.state().deletRow).to.equal(false);
+        let deleteInGroupStub = sinon.stub(GroupAction, 'deleteInGroup');
+
+        const wrapper = shallow(<Group group={group} groupCount={1} index={1}/>);
         wrapper.find(MenuItem).last().simulate('click');
-        expect(wrapper.state().deletRow).to.equal(true);
+        sinon.assert.calledOnce(deleteInGroupStub);
+
+        GroupAction.deleteInGroup.restore();
     });
 
     it('Should react when edit btn is select', () => {
+        let updateGStub = sinon.stub(GroupAction, 'updateGroup');
+
         const wrapper = shallow(<Group group={group} groupCount={2} index={1}/>);
-        expect(wrapper.state().editRow).to.equal(false);
         wrapper.find(MenuItem).at(1).simulate('click');
-        expect(wrapper.state().editRow).to.equal(true);
-        expect(wrapper.state().editRowNewGroup).to.equal(2);
+        sinon.assert.calledOnce(updateGStub);
+
+        GroupAction.updateGroup.restore();
     });
 });

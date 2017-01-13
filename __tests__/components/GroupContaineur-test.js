@@ -55,33 +55,22 @@ describe('GroupContaineur components test', function () {
     });
 
     it('Should have props : groups and state init', () => {
-        const wrapper = mount(<GroupContaineur groups={groups}/>);
-        expect(wrapper.props().groups).to.equal(groups);
+        const wrapper = mount(<GroupContaineur/>);
 
-        expect(wrapper.state().groups).to.equal(groups);
+        expect(wrapper.state().groups.length).to.equal(groups.length);
         expect(wrapper.state().activeKey).to.equal('1');
     });
 
     it('Should have PanelGroup with props', () => {
-        const wrapper = mount(<GroupContaineur groups={groups}/>);
+        const wrapper = mount(<GroupContaineur/>);
         expect(wrapper.find(PanelGroup)).to.have.length(1);
         expect(wrapper.find(PanelGroup).get(0).props.defaultActiveKey).to.equal('1');
         expect(wrapper.find(PanelGroup).get(0).props.activeKey).to.equal('1');
     });
 
     it('Should have Group with props', () => {
-        const wrapper = mount(<GroupContaineur groups={groups}/>);
+        const wrapper = mount(<GroupContaineur/>);
         expect(wrapper.find(Group)).to.have.length(3);
-
-        expect(wrapper.find(Group).get(0).props.group.id).to.equal("1");
-        expect(wrapper.find(Group).get(0).props.group.title).to.equal("Group 1");
-        expect(wrapper.find(Group).get(0).props.group.sentences.length).to.equal(3);
-
-        expect(wrapper.find(Group).get(0).props.groupCount).to.equal(3);
-
-        expect(wrapper.find(Group).get(0).props.index).to.equal(1);
-        expect(wrapper.find(Group).get(1).props.index).to.equal(2);
-        expect(wrapper.find(Group).get(2).props.index).to.equal(3);
     });
 
 });

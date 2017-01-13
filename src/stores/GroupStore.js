@@ -30,7 +30,7 @@ class GroupStore extends EventEmitter {
     }
 
     getGroupById(id) {
-        return _groups.find(group => group.id === id);
+        return _groups.find(group => group.id == id);
     }
 }
 

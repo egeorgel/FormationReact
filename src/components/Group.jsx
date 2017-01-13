@@ -11,10 +11,6 @@ class Group extends React.Component {
             group: this.props.group,
             groupCount: this.props.groupCount,
             index: this.props.index,
-
-            deletRow: false,
-            editRow: false,
-            editRowNewGroup: ''
         };
     }
 
@@ -64,14 +60,10 @@ class Group extends React.Component {
 
     _deleteRow(sentence) {
         GroupAction.deleteInGroup(sentence);
-        this.setState({deletRow: true});
-        //console.log("group id : " + this.state.group.id + " delete : " + sentence);
     }
 
     _editGroup(newGroup, sentence) {
         GroupAction.updateGroup(newGroup, sentence);
-        this.setState({editRow: true, editRowNewGroup: newGroup});
-        //console.log("group : " + newGroup + " edit : " + sentence);
     }
 }
 

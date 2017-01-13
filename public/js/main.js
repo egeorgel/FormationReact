@@ -53902,7 +53902,6 @@ function helper(sentence) {
     });
     if (index !== null) {
         groups[indexGroup].sentences.splice(index, 1);
-        console.log(indexGroup);
     }
 }
 
@@ -53975,11 +53974,7 @@ var Group = function (_React$Component) {
         _this.state = {
             group: _this.props.group,
             groupCount: _this.props.groupCount,
-            index: _this.props.index,
-
-            deletRow: false,
-            editRow: false,
-            editRowNewGroup: ''
+            index: _this.props.index
         };
         return _this;
     }
@@ -54055,15 +54050,11 @@ var Group = function (_React$Component) {
         key: '_deleteRow',
         value: function _deleteRow(sentence) {
             _GroupAction2.default.deleteInGroup(sentence);
-            this.setState({ deletRow: true });
-            //console.log("group id : " + this.state.group.id + " delete : " + sentence);
         }
     }, {
         key: '_editGroup',
         value: function _editGroup(newGroup, sentence) {
             _GroupAction2.default.updateGroup(newGroup, sentence);
-            this.setState({ editRow: true, editRowNewGroup: newGroup });
-            //console.log("group : " + newGroup + " edit : " + sentence);
         }
     }]);
 
@@ -54397,7 +54388,7 @@ var GroupStore = function (_EventEmitter) {
         key: 'getGroupById',
         value: function getGroupById(id) {
             return _groups.find(function (group) {
-                return group.id === id;
+                return group.id == id;
             });
         }
     }]);
