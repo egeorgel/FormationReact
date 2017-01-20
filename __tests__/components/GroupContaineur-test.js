@@ -79,9 +79,9 @@ describe('GroupContaineur components test', function () {
 
         expect(wrapper.find(Group).get(0).props.groupCount).to.equal(3);
 
-        expect(wrapper.find(Group).get(0).props.index).to.equal(1);
-        expect(wrapper.find(Group).get(1).props.index).to.equal(2);
-        expect(wrapper.find(Group).get(2).props.index).to.equal(3);
+        expect(wrapper.find(Group).get(0).props.index).to.equal(0);
+        expect(wrapper.find(Group).get(1).props.index).to.equal(1);
+        expect(wrapper.find(Group).get(2).props.index).to.equal(2);
     });
 
 });

@@ -30,6 +30,7 @@ describe('Group components test', function () {
 
     it('Should have props and state init', () => {
         const wrapper = mount(<Group group={group} groupCount={2} index={1}/>);
+
         expect(wrapper.props().group).to.equal(group);
         expect(wrapper.props().groupCount).to.equal(2);
         expect(wrapper.props().index).to.equal(1);
@@ -49,6 +50,14 @@ describe('Group components test', function () {
         expect(wrapper.find(ListGroupItem)).to.have.length(3);
     });
 
+    it('Should have 6 MenuItem', () => {
+        const wrapper = mount(<Group group={group} groupCount={2} index={1}/>);
+        expect(wrapper.find(MenuItem)).to.have.length(6);
+        expect(wrapper.find(MenuItem).at(1).find(".fa-trash-o")).to.have.length(1);
+        //console.log(wrapper.find(MenuItem).last().find(".fa-trash-o").html());
+        expect(wrapper.find(MenuItem).at(0).text()).to.equal("Group 1");
+    });
+
     it('Should react when delete btn is select', () => {
         const wrapper = shallow(<Group group={group} groupCount={2} index={1}/>);
         expect(wrapper.state().deletRow).to.equal(false);
@@ -57,9 +66,9 @@ describe('Group components test', function () {
     });
 
     it('Should react when edit btn is select', () => {
-        const wrapper = shallow(<Group group={group} groupCount={2} index={1}/>);
+        const wrapper = shallow(<Group group={group} groupCount={2} index={0}/>);
         expect(wrapper.state().editRow).to.equal(false);
-        wrapper.find(MenuItem).at(1).simulate('click');
+        wrapper.find(MenuItem).at(0).simulate('click');
         expect(wrapper.state().editRow).to.equal(true);
         expect(wrapper.state().editRowNewGroup).to.equal(2);
     });

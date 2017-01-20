@@ -42929,7 +42929,11 @@ var Group = function (_React$Component) {
         _this.state = {
             group: _this.props.group,
             groupCount: _this.props.groupCount,
-            index: _this.props.index
+            index: _this.props.index,
+
+            deletRow: false,
+            editRow: false,
+            editRowNewGroup: ''
         };
         return _this;
     }
@@ -42988,27 +42992,31 @@ var Group = function (_React$Component) {
 
             if (this.state.groupCount > 1) {
                 // create array of index groupCount and iterate throw a map
-                return Array.from(new Array(this.state.groupCount), function () {
+                var menuItem = Array.from(new Array(this.state.groupCount), function () {
                     return '';
                 }).map(function (x, index) {
                     return _react2.default.createElement(
                         _reactBootstrap.MenuItem,
-                        { eventKey: "1." + index, onClick: _this3._editGroup.bind(_this3, index + 1, sentence) },
+                        { eventKey: "1." + index, onClick: _this3._editGroup.bind(_this3, index + 1, sentence), key: "MenuItem" + index },
                         _react2.default.createElement('i', { className: 'fa fa-pencil-square-o icon-sentence', 'aria-hidden': 'true' }),
                         'Group ',
                         index + 1
                     );
                 });
+                menuItem.splice(this.props.index, 1);
+                return menuItem;
             }
         }
     }, {
         key: '_deleteRow',
         value: function _deleteRow(sentence) {
+            this.setState({ deletRow: true });
             console.log("group id : " + this.state.group.id + " delete : " + sentence);
         }
     }, {
         key: '_editGroup',
         value: function _editGroup(group, sentence) {
+            this.setState({ editRow: true, editRowNewGroup: group });
             console.log("group : " + group + " edit : " + sentence);
         }
     }]);
@@ -43070,7 +43078,7 @@ var GroupContaineur = function (_React$Component) {
                         _reactBootstrap.PanelGroup,
                         { defaultActiveKey: '1',
                             activeKey: this.state.activeKey,
-                            onSelect: this._handleSelect.bind(this), accordion: true },
+                            onSelect: this._handleSelect.bind(this) },
                         groupR
                     )
                 )
@@ -43090,8 +43098,8 @@ var GroupContaineur = function (_React$Component) {
                 return this.state.groups.map(function (group, index) {
                     return _react2.default.createElement(
                         _reactBootstrap.Panel,
-                        { header: group.title, eventKey: index + 1, bsStyle: 'primary' },
-                        _react2.default.createElement(_Group2.default, { group: group, groupCount: _this2.state.groups.length, index: index, key: index })
+                        { header: group.title, eventKey: index + 1, bsStyle: 'primary', key: "panel" + index, collapsible: true, defaultExpanded: true },
+                        _react2.default.createElement(_Group2.default, { group: group, groupCount: _this2.state.groups.length, index: index, key: "group" + index })
                     );
                 });
             } else return [];
@@ -43167,7 +43175,7 @@ var Home = function (_React$Component) {
                         _react2.default.createElement(
                             'h1',
                             null,
-                            ' Tutorial React'
+                            'Tutorial React'
                         )
                     )
                 ),

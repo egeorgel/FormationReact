@@ -35,7 +35,7 @@ class GroupContaineur extends React.Component {
         if (this.state.groups.length > 0) {
             return this.state.groups.map((group, index) => (
                 <Panel header={group.title} eventKey={index+1} bsStyle="primary" key={"panel"+index} collapsible defaultExpanded>
-                    <Group group={group} groupCount={this.state.groups.length} index={index+1} key={"group"+index}/>
+                    <Group group={group} groupCount={this.state.groups.length} index={index} key={"group"+index}/>
                 </Panel>
             ));
         }

@@ -51,12 +51,14 @@ class Group extends React.Component {
     _menuItemEditGroup(sentence) {
         if (this.state.groupCount > 1) {
             // create array of index groupCount and iterate throw a map
-            return Array.from(new Array(this.state.groupCount), () => '').map((x, index) => (
+            let menuItem = Array.from(new Array(this.state.groupCount), () => '').map((x, index) => (
                  <MenuItem eventKey={"1."+index} onClick={this._editGroup.bind(this, index + 1, sentence)} key={"MenuItem"+index}>
                     <i className="fa fa-pencil-square-o icon-sentence" aria-hidden="true"/>
                     Group {index + 1}
                 </MenuItem>
             ));
+            menuItem.splice(this.props.index, 1);
+            return menuItem;
         }
     }
 
